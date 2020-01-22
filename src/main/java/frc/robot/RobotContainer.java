@@ -28,17 +28,17 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
-  private final DriveTrain drive = new DriveTrain();
-  private final JoystickDrive joyDrive = new JoystickDrive(drive);
+  public static final DriveTrain drive = new DriveTrain();
+  public static final JoystickDrive joyDrive = new JoystickDrive(drive);
 
-  public static Joystick joy = new Joystick(1);
+  public static Joystick joy = new Joystick(0);
 
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // Configure the button bindings
+    // Configure the button bindings4
     configureButtonBindings();
     
   }
@@ -50,6 +50,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    System.out.println("joy value: " + joy.getRawAxis(1));
   }
 
 

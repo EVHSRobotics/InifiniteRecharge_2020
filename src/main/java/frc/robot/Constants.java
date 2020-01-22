@@ -17,8 +17,13 @@ package frc.robot;
  */
 public final class Constants {
 
-	public static final int LEFT_MOTOR_1 = 0;
-	public static final int LEFT_MOTOR_2 = 0;
-	public static final int RIGHT_MOTOR_1 = 0;
-	public static final int RIGHT_MOTOR_2 = 0;
+	public static final int LEFT_MOTOR_1 = 1; 
+	public static final int LEFT_MOTOR_2 = 3;
+	public static final int RIGHT_MOTOR_1 = 2; //inverted
+	public static final int RIGHT_MOTOR_2 = 4; //inverted
+
+	/*
+	id 4 is inverted and right
+	id 3 is left
+	*/
 }

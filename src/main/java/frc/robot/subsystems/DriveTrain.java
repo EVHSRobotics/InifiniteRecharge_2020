@@ -9,6 +9,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,14 +20,19 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
-  private TalonSRX leftTalon1;// = new TalonSRX(Constants.LEFT_MOTOR_1);
-  private TalonSRX leftTalon2;// = new TalonSRX(Constants.LEFT_MOTOR_2);
-  private TalonSRX rightTalon1;// = new TalonSRX(Constants.RIGHT_MOTOR_1);
-  private TalonSRX rightTalon2;// = new TalonSRX(Constants.RIGHT_MOTOR_2);
+  private TalonSRX leftTalon1 = new TalonSRX(Constants.LEFT_MOTOR_1);
+  private TalonSRX leftTalon2 = new TalonSRX(Constants.LEFT_MOTOR_2); //invert
+  private TalonSRX rightTalon1= new TalonSRX(Constants.RIGHT_MOTOR_1);
+  private TalonSRX rightTalon2 = new TalonSRX(Constants.RIGHT_MOTOR_2);//invert
+ 
  
   public DriveTrain() {
       leftTalon2.follow(leftTalon1);
       rightTalon2.follow(rightTalon1);
+      System.out.println("Drivetrain working");
+      leftTalon1.setInverted(true);
+      leftTalon2.setInverted(true);
+     
   }
 
   @Override
@@ -34,17 +41,26 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void setSpeed(double speed){
-    leftTalon1.set(ControlMode.PercentOutput, speed);
-    rightTalon1.set(ControlMode.PercentOutput, speed);
+    leftTalon1.set(ControlMode.Velocity, speed*1000);
+    rightTalon1.set(ControlMode.Velocity, speed*1000);
   }
 
-  public void findTalonIDs(){
-
-    for (int i = 0; i < 10; i++){
-      leftTalon1 = new TalonSRX(i);
-      System.out.println("Testing talon id: " + i + "...");
-      leftTalon1.set(ControlMode.PercentOutput, 0.5);
-      Timer.delay(1);
-    }
+  public void setSpeedPercent(double rightSpeed, double leftSpeed){
+   
+      leftTalon1.set(ControlMode.PercentOutput, leftSpeed);
+      rightTalon1.set(ControlMode.PercentOutput, rightSpeed);
+     // rightTalon2.set(ControlMode.PercentOutput, speed);
   }
+
+  // public double getLeftEncoders(){
+  //   return talon.getSelectedSensorPosition(0);
+  // }
+
+  // public void resetEncoders(){
+  //    talon.setSelectedSensorPosition(0);
+  //}
+
+  
+
+  
 }
