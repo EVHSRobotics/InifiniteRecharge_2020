@@ -8,9 +8,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -18,14 +17,22 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
-  private TalonSRX leftTalon1 = new TalonSRX(Constants.LEFT_MOTOR_1);
-  private TalonSRX leftTalon2= new TalonSRX(Constants.LEFT_MOTOR_2);
-  private TalonSRX rightTalon1 = new TalonSRX(Constants.RIGHT_MOTOR_1);
-  private TalonSRX rightTalon2 = new TalonSRX(Constants.RIGHT_MOTOR_2);
+  private TalonFX leftFalcon1;
+  private TalonFX leftFalcon2;
+  private TalonFX rightFalcon1;
+  private TalonFX rightFalcon2;
  
   public DriveTrain() {
-      leftTalon2.follow(leftTalon1);
-      rightTalon2.follow(rightTalon1);
+    leftFalcon1 = new TalonFX(Constants.LEFT_MOTOR_1);
+    leftFalcon2 = new TalonFX(Constants.LEFT_MOTOR_2);
+    rightFalcon1 = new TalonFX(Constants.RIGHT_MOTOR_1);
+    rightFalcon2 = new TalonFX(Constants.RIGHT_MOTOR_2);
+
+    leftFalcon2.follow(leftFalcon1);
+    rightFalcon2.follow(rightFalcon1);
+
+    rightFalcon1.setInverted(true);
+    rightFalcon2.setInverted(true);
   }
 
   @Override
@@ -34,8 +41,8 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void setSpeed(double speed){
-    leftTalon1.set(ControlMode.PercentOutput, speed);
-    rightTalon1.set(ControlMode.PercentOutput, speed);
+    leftFalcon1.set(ControlMode.PercentOutput, speed);
+    rightFalcon1.set(ControlMode.PercentOutput, speed);
   }
 
   

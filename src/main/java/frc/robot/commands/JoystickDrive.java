@@ -32,9 +32,10 @@ public class JoystickDrive extends CommandBase {
   @Override
   public void execute() {
     throttle = RobotContainer.joy.getRawAxis(2)-RobotContainer.joy.getRawAxis(3);
-    if(Math.abs(throttle) > 0){
-    //  jDrive.findTalonIDs();
-    }
+   
+      jDrive.setSpeed(throttle);
+
+    
 
 
 
