@@ -18,10 +18,10 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
-  private TalonSRX leftTalon1;// = new TalonSRX(Constants.LEFT_MOTOR_1);
-  private TalonSRX leftTalon2;// = new TalonSRX(Constants.LEFT_MOTOR_2);
-  private TalonSRX rightTalon1;// = new TalonSRX(Constants.RIGHT_MOTOR_1);
-  private TalonSRX rightTalon2;// = new TalonSRX(Constants.RIGHT_MOTOR_2);
+  private TalonSRX leftTalon1 = new TalonSRX(Constants.LEFT_MOTOR_1);
+  private TalonSRX leftTalon2= new TalonSRX(Constants.LEFT_MOTOR_2);
+  private TalonSRX rightTalon1 = new TalonSRX(Constants.RIGHT_MOTOR_1);
+  private TalonSRX rightTalon2 = new TalonSRX(Constants.RIGHT_MOTOR_2);
  
   public DriveTrain() {
       leftTalon2.follow(leftTalon1);
@@ -38,13 +38,5 @@ public class DriveTrain extends SubsystemBase {
     rightTalon1.set(ControlMode.PercentOutput, speed);
   }
 
-  public void findTalonIDs(){
-
-    for (int i = 0; i < 10; i++){
-      leftTalon1 = new TalonSRX(i);
-      System.out.println("Testing talon id: " + i + "...");
-      leftTalon1.set(ControlMode.PercentOutput, 0.5);
-      Timer.delay(1);
-    }
-  }
+  
 }
