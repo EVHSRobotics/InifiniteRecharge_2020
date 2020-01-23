@@ -20,10 +20,10 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
-  private TalonSRX leftTalon1 = new TalonSRX(Constants.LEFT_MOTOR_1);
-  private TalonSRX leftTalon2 = new TalonSRX(Constants.LEFT_MOTOR_2); //invert
-  private TalonSRX rightTalon1= new TalonSRX(Constants.RIGHT_MOTOR_1);
-  private TalonSRX rightTalon2 = new TalonSRX(Constants.RIGHT_MOTOR_2);//invert
+  private static TalonSRX leftTalon1 = new TalonSRX(Constants.LEFT_MOTOR_1);
+  private static TalonSRX leftTalon2 = new TalonSRX(Constants.LEFT_MOTOR_2); //invert
+  private static TalonSRX rightTalon1= new TalonSRX(Constants.RIGHT_MOTOR_1);
+  private static TalonSRX rightTalon2 = new TalonSRX(Constants.RIGHT_MOTOR_2);//invert
  
  
   public DriveTrain() {
@@ -40,9 +40,9 @@ public class DriveTrain extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setSpeed(double speed){
-    leftTalon1.set(ControlMode.Velocity, speed*1000);
-    rightTalon1.set(ControlMode.Velocity, speed*1000);
+  public void setSpeed(double speed, double turn){
+    leftTalon1.set(ControlMode.Velocity, (speed+turn)*1000);
+    rightTalon1.set(ControlMode.Velocity, (speed-turn)*1000);
   }
 
   public void setSpeedPercent(double rightSpeed, double leftSpeed){
@@ -51,6 +51,8 @@ public class DriveTrain extends SubsystemBase {
       rightTalon1.set(ControlMode.PercentOutput, rightSpeed);
      // rightTalon2.set(ControlMode.PercentOutput, speed);
   }
+
+  
 
   // public double getLeftEncoders(){
   //   return talon.getSelectedSensorPosition(0);

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 
@@ -34,13 +35,13 @@ public class JoystickDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
     throttle = RobotContainer.joy.getRawAxis(5);
     turn = RobotContainer.joy.getRawAxis(2) - RobotContainer.joy.getRawAxis(3);//   System.out.println("throttle: " + throttle);
-    
-    
+        
  // jDrive.setSpeedPercent(throttle+turn, throttle - turn);
     
-    jDrive.setSpeed(throttle + turn);
+    jDrive.setSpeed(throttle, turn);
 
    // System.out.println("Left Encoder = " + jDrive.getLeftEncoders());
 
@@ -51,7 +52,7 @@ public class JoystickDrive extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    jDrive.setSpeed(0);
+    jDrive.setSpeed(0,0);
   }
 
   // Returns true when the command should end.
