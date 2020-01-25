@@ -7,12 +7,16 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 
 public class JoystickDrive extends CommandBase {
   private double throttle;
+  private double turn;
   private final DriveTrain jDrive;
   /**
    * Creates a new JoystickDrive.
@@ -32,11 +36,18 @@ public class JoystickDrive extends CommandBase {
   @Override
   public void execute() {
     throttle = RobotContainer.joy.getRawAxis(2)-RobotContainer.joy.getRawAxis(3);
-   
-      jDrive.setSpeed(throttle);
+    turn = RobotContainer.joy.getRawAxis(4);
+    turn *= Math.abs(turn)*turn*turn;
+    if(Math.abs(turn) < .005){
+      turn = 0;
 
+    }
     
+    System.out.println(throttle);
+      jDrive.setSpeed(throttle, -1*turn);
 
+    System.out.println("Battery Voltage: " + RobotController.getBatteryVoltage());
+   // SmartDashboard.putNumber("Battery Voltage", RobotController.getBatteryVoltage());
 
 
   }
@@ -44,7 +55,7 @@ public class JoystickDrive extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    jDrive.setSpeed(0);
+    jDrive.setSpeed(0, 0);
   }
 
   // Returns true when the command should end.

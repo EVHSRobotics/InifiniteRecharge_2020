@@ -28,10 +28,10 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
-  private final DriveTrain drive = new DriveTrain();
-  private final JoystickDrive joyDrive = new JoystickDrive(drive);
+  public static DriveTrain drive = new DriveTrain();
+  public static JoystickDrive joyDrive = new JoystickDrive(drive);
 
-  public static Joystick joy = new Joystick(1);
+  public static Joystick joy = new Joystick(0);
 
 
   /**
