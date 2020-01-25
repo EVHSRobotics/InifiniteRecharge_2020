@@ -33,12 +33,13 @@ public class JoystickDrive extends CommandBase {
   }
 
   // Called every time the scheduler runs while the command is scheduled.
-  @Override
+  @Override 
   public void execute() {
     throttle = RobotContainer.joy.getRawAxis(2)-RobotContainer.joy.getRawAxis(3);
     turn = RobotContainer.joy.getRawAxis(4);
     turn *= Math.abs(turn)*turn*turn;
-    if(Math.abs(turn) < .005){
+    if(Math.abs(turn) < .0001)
+    {
       turn = 0;
 
     }

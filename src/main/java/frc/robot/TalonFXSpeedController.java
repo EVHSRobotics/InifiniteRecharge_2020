@@ -42,7 +42,7 @@ public class TalonFXSpeedController implements SpeedController {
         }
         this.speed = speed;
 
-        talonFX.set(ControlMode.PercentOutput, speed);
+        talonFX.set(ControlMode.Velocity, speed*22000);
 
     }
 
