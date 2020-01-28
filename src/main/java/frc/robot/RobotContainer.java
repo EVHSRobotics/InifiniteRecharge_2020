@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.JoystickDrive;
+import frc.robot.commands.ShooterDrie;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -30,6 +32,9 @@ public class RobotContainer {
   
   public static DriveTrain drive = new DriveTrain();
   public static JoystickDrive joyDrive = new JoystickDrive(drive);
+
+  public static Shooter shooter = new Shooter();
+  public static ShooterDrie shooterDrive = new ShooterDrie(shooter);
 
   public static Joystick joy = new Joystick(0);
 

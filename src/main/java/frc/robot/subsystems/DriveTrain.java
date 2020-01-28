@@ -37,20 +37,20 @@ public class DriveTrain extends SubsystemBase {
   
 
   public DriveTrain() {
-    leftFalcon1 = new TalonFXSpeedController(Constants.LEFT_MOTOR_1);
-    leftFalcon2 = new TalonFXSpeedController(Constants.LEFT_MOTOR_2);
-    rightFalcon1 = new TalonFXSpeedController(Constants.RIGHT_MOTOR_1);
-    rightFalcon2 = new TalonFXSpeedController(Constants.RIGHT_MOTOR_2);
+    // leftFalcon1 = new TalonFXSpeedController(Constants.LEFT_MOTOR_1);
+    // leftFalcon2 = new TalonFXSpeedController(Constants.LEFT_MOTOR_2);
+    // rightFalcon1 = new TalonFXSpeedController(Constants.RIGHT_MOTOR_1);
+    // rightFalcon2 = new TalonFXSpeedController(Constants.RIGHT_MOTOR_2);
 
-    leftGroup = new SpeedControllerGroup(leftFalcon1, leftFalcon2);
-    rightGroup = new SpeedControllerGroup(rightFalcon1, rightFalcon2);
+    // leftGroup = new SpeedControllerGroup(leftFalcon1, leftFalcon2);
+    // rightGroup = new SpeedControllerGroup(rightFalcon1, rightFalcon2);
   //  leftFalcon2.follow(leftFalcon1);
    // rightFalcon2.follow(rightFalcon1);
 
    // rightFalcon1.setInverted(true);
   //  rightFalcon2.setInverted(true);
 
-    dDrive = new DifferentialDrive(leftGroup , rightGroup);
+  //  dDrive = new DifferentialDrive(leftGroup , rightGroup);
     
   }
 
@@ -64,18 +64,18 @@ public class DriveTrain extends SubsystemBase {
     
     //leftFalcon1.set(ControlMode.PercentOutput, speed);
 
-   // rightFalcon1.set(ControlMode.PercentOutput, speed);
-    // dDrive.arcadeDrive(speed, turn, true);
-    dDrive.curvatureDrive(speed, turn, (Math.abs(speed)<0.1));
-  //  leftGroup.set(speed);
-  //  rightGroup.set(speed);
-  //  leftFalcon1.set(speed);
-  //  leftFalcon2.set(speed);
-  //  rightFalcon1.set(speed);
-  //  rightFalcon2.set(speed);
-   System.out.println("Falcon left 1 get(): " + leftFalcon1.get());
-   System.out.println("Falcon right 1 get(): " + rightFalcon1.get());
-   System.out.println("turn: " + turn);
+  //  // rightFalcon1.set(ControlMode.PercentOutput, speed);
+  //   // dDrive.arcadeDrive(speed, turn, true);
+  //   dDrive.curvatureDrive(speed, turn, (Math.abs(speed)<0.1));
+  // //  leftGroup.set(speed);
+  // //  rightGroup.set(speed);
+  // //  leftFalcon1.set(speed);
+  // //  leftFalcon2.set(speed);
+  // //  rightFalcon1.set(speed);
+  // //  rightFalcon2.set(speed);
+  //  System.out.println("Falcon left 1 get(): " + leftFalcon1.get());
+  //  System.out.println("Falcon right 1 get(): " + rightFalcon1.get());
+  //  System.out.println("turn: " + turn);
   }
 
   

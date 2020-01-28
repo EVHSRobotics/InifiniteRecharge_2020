@@ -21,6 +21,8 @@ public final class Constants {
 	public static final int LEFT_MOTOR_2 = 1;
 	public static final int RIGHT_MOTOR_1 = 2;
 	public static final int RIGHT_MOTOR_2 = 3;
+	public static final int SHOOTER1 = 5;
+	public static final int SHOOTER2 = 6;
 	public static int TURRET;
 	public static int INTAKE_2;
 }
