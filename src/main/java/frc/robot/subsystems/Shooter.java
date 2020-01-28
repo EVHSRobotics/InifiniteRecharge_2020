@@ -33,7 +33,8 @@ public class Shooter extends SubsystemBase {
   }
 
   public void outtakeBall(double speed){
-    shooterMotor1.set(ControlMode.PercentOutput, speed);
+    shooterMotor1.set(ControlMode.PercentOutput, .1);
+    System.out.println(speed);
   }
 
   public void rotateTurret(double speed){

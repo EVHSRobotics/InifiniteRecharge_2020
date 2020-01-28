@@ -39,21 +39,22 @@ public class AuxilaryInput extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shot.outtakeBall(RobotContainer.xbox.getTriggerAxis(Hand.kLeft));
+    shot.outtakeBall(1);
+    // shot.outtakeBall(RobotContainer.xbox.getTriggerAxis(Hand.kLeft));
+  
+    // if(RobotContainer.xbox.getAButton()){
+    //   shot.intake1(1);
+    // }else{
+    //   shot.intake1(0);
+    // }
 
-    if(RobotContainer.xbox.getAButton()){
-      shot.intake1(1);
-    }else{
-      shot.intake1(0);
-    }
+    // if(RobotContainer.xbox.getBButton()){
+    //   shot.intake2(1);
+    // }else{
+    //   shot.intake2(0);
+    // }
 
-    if(RobotContainer.xbox.getBButton()){
-      shot.intake2(1);
-    }else{
-      shot.intake2(0);
-    }
-
-    shot.rotateTurret(RobotContainer.xbox.getX(Hand.kLeft));
+    // shot.rotateTurret(RobotContainer.xbox.getX(Hand.kLeft));
   }
 
   // Called once the command ends or is interrupted.
