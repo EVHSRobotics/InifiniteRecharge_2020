@@ -14,11 +14,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  private static TalonFX intakeMotor1 = new TalonFX(Constants.INTAKE_1);
-  private static TalonFX intakeMotor2 = new TalonFX(Constants.INTAKE_2);
-  private static TalonFX turretMotor = new TalonFX(Constants.TURRET);
-  private static TalonFX shooterMotor1 = new TalonFX(Constants.SHOOTER1);
-  private static TalonFX shooterMotor2 = new TalonFX(Constants.SHOOTER2);
+  private static TalonFX shooterMotor1 = new TalonFX(Constants.SHOOTER_MOTOR_1);
+  private static TalonFX shooterMotor2 = new TalonFX(Constants.SHOOTER_MOTOR_2);
+  private double currentSpeed;
+  private double maxSpeed;
 
   /**
    * Creates a new Shooter.
@@ -33,19 +32,20 @@ public class Shooter extends SubsystemBase {
   }
 
   public void outtakeBall(double speed){
-    shooterMotor1.set(ControlMode.PercentOutput, .1);
-    System.out.println(speed);
+    System.out.println("Outtake command is working");
+    maxSpeed = speed;
+    shooterMotor1.set(ControlMode.Velocity, speed*20000);
+   // shooterMotor2.set(ControlMode.Velocity, speed*2000000);
+    System.out.println("speed " + speed);
   }
 
-  public void rotateTurret(double speed){
-    turretMotor.set(ControlMode.PercentOutput,speed);
+  public double getShooterSpeed(){
+    return shooterMotor1.getSelectedSensorVelocity();
+  
+  }
+  public double getMaxSpeed(){
+    return maxSpeed;
   }
 
-  public void intake1(double speed){
-    intakeMotor1.set(ControlMode.PercentOutput, speed);
-  }
 
-  public void intake2(double speed){
-    intakeMotor2.set(ControlMode.PercentOutput, speed);
-  }
 }

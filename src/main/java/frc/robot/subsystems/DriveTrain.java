@@ -32,7 +32,7 @@ public class DriveTrain extends SubsystemBase {
   private SpeedControllerGroup rightGroup;
 
 
-    DifferentialDrive dDrive;
+    //DifferentialDrive dDrive;
 
   
 
@@ -50,7 +50,7 @@ public class DriveTrain extends SubsystemBase {
    // rightFalcon1.setInverted(true);
   //  rightFalcon2.setInverted(true);
 
-    dDrive = new DifferentialDrive(leftGroup , rightGroup);
+   // dDrive = new DifferentialDrive(leftGroup , rightGroup);
     
   }
 
@@ -66,16 +66,16 @@ public class DriveTrain extends SubsystemBase {
 
    // rightFalcon1.set(ControlMode.PercentOutput, speed);
     // dDrive.arcadeDrive(speed, turn, true);
-    dDrive.curvatureDrive(speed, turn, (Math.abs(speed)<0.1));
-  //  leftGroup.set(speed);
-  //  rightGroup.set(speed);
-  //  leftFalcon1.set(speed);
-  //  leftFalcon2.set(speed);
-  //  rightFalcon1.set(speed);
-  //  rightFalcon2.set(speed);
-   System.out.println("Falcon left 1 get(): " + leftFalcon1.get());
-   System.out.println("Falcon right 1 get(): " + rightFalcon1.get());
-   System.out.println("turn: " + turn);
+  //   dDrive.curvatureDrive(speed, turn, (Math.abs(speed)<0.1));
+  // //  leftGroup.set(speed);
+  // //  rightGroup.set(speed);
+  // //  leftFalcon1.set(speed);
+  // //  leftFalcon2.set(speed);
+  // //  rightFalcon1.set(speed);
+  // //  rightFalcon2.set(speed);
+  //  System.out.println("Falcon left 1 get(): " + leftFalcon1.get());
+  //  System.out.println("Falcon right 1 get(): " + rightFalcon1.get());
+  //  System.out.println("turn: " + turn);
   }
 
   
