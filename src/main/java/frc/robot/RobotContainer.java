@@ -13,10 +13,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.ShooterDrie;
+import frc.robot.commands.ShooterJoy;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -34,9 +36,11 @@ public class RobotContainer {
   public static JoystickDrive joyDrive = new JoystickDrive(drive);
 
   public static Shooter shooter = new Shooter();
-  public static ShooterDrie shooterDrive = new ShooterDrie(shooter);
+  public static ShooterJoy shooterJoy = new ShooterJoy(shooter);
 
   public static Joystick joy = new Joystick(0);
+
+
 
 
   /**
@@ -66,6 +70,11 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
+  }
+
+  public Subsystem getSubsystem(Subsystem subsystemName){
+    return subsystemName;
+
   }
  
 }

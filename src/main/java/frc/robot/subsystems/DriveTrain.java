@@ -32,7 +32,7 @@ public class DriveTrain extends SubsystemBase {
   private SpeedControllerGroup rightGroup;
 
 
-    DifferentialDrive dDrive;
+    //DifferentialDrive dDrive;
 
   
 
@@ -50,7 +50,7 @@ public class DriveTrain extends SubsystemBase {
    // rightFalcon1.setInverted(true);
   //  rightFalcon2.setInverted(true);
 
-  //  dDrive = new DifferentialDrive(leftGroup , rightGroup);
+
     
   }
 
@@ -63,9 +63,9 @@ public class DriveTrain extends SubsystemBase {
     //dDrive.set(ControlMode.PercentOutput, speed);
     
     //leftFalcon1.set(ControlMode.PercentOutput, speed);
-
   //  // rightFalcon1.set(ControlMode.PercentOutput, speed);
   //   // dDrive.arcadeDrive(speed, turn, true);
+
   //   dDrive.curvatureDrive(speed, turn, (Math.abs(speed)<0.1));
   // //  leftGroup.set(speed);
   // //  rightGroup.set(speed);

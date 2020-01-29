@@ -14,11 +14,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
+
   // private static TalonFX intakeMotor1 = new TalonFX(Constants.INTAKE_1);
   // private static TalonFX intakeMotor2 = new TalonFX(Constants.INTAKE_2);
   // private static TalonFX turretMotor = new TalonFX(Constants.TURRET);
   private static TalonFX shooterMotor1 = new TalonFX(Constants.SHOOTER1);
   private static TalonFX shooterMotor2 = new TalonFX(Constants.SHOOTER2);
+
+  private double currentSpeed;
+  private double maxSpeed;
 
   /**
    * Creates a new Shooter.
@@ -33,8 +37,8 @@ public class Shooter extends SubsystemBase {
   }
 
   public void outtakeBall(double speed){
-    shooterMotor1.set(ControlMode.PercentOutput, speed);
-    shooterMotor2.set(ControlMode.PercentOutput, speed);
+   shooterMotor1.set(ControlMode.Velocity, speed*20000);
+    shooterMotor2.set(ControlMode.Velocity, speed*20000);
     System.out.println(speed);
   }
 
