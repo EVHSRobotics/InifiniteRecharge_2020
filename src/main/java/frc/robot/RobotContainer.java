@@ -12,9 +12,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.JoystickDrive;
+import frc.robot.commands.ToggleShift;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -28,11 +31,16 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
-  public static DriveTrain drive = new DriveTrain();
-  public static JoystickDrive joyDrive = new JoystickDrive(drive);
+  public final static DriveTrain drive = new DriveTrain();
+  
+  private final JoystickDrive joyDrive = new JoystickDrive(drive);
 
-  public static Joystick joy = new Joystick(0);
+  private Joystick joy;
+  private Joystick wheel;
 
+  private JoystickButton shiftBtn;
+
+  
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -40,8 +48,9 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    
+
   }
+
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
@@ -50,9 +59,27 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
+    joy = new Joystick(Constants.JOY_PORT);
+    wheel = new Joystick(Constants.WHEEL_PORT);
+  
+    shiftBtn = new JoystickButton(joy, 1);
+
+    shiftBtn.whenPressed(() -> drive.toggleShift());
+    //buttonA.whenPressed(new ToggleShift(drive));
+
+
+
   }
 
 
+  public Joystick getJoy(){
+    return joy;
+  }
+
+  public Joystick getWheel(){
+    return wheel;
+  }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
@@ -62,5 +89,6 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
+
  
 }

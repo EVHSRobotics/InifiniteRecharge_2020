@@ -9,12 +9,18 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PWMTalonFX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.TalonFXSpeedController;
+import frc.robot.commands.ToggleShift;
 
 public class DriveTrain extends SubsystemBase {
   /**
@@ -30,7 +36,14 @@ public class DriveTrain extends SubsystemBase {
   
   private SpeedControllerGroup rightGroup;
 
-
+  private DoubleSolenoid shifter;
+  private DoubleSolenoid shifter2;
+  Value fast = Value.kForward;
+  Value slow = Value.kReverse;
+  Value off  = Value.kOff;
+  private String gearState;
+  private boolean isFast = false;
+  private JoystickButton buttonA;
   DifferentialDrive dDrive;
 
   
@@ -50,32 +63,57 @@ public class DriveTrain extends SubsystemBase {
   //  rightFalcon2.setInverted(true);
 
     dDrive = new DifferentialDrive(leftGroup , rightGroup);
+    shifter = new DoubleSolenoid(Constants.shifterUp1, Constants.shifterDown1);
+    shifter2 = new DoubleSolenoid(Constants.shifterUp2, Constants.shifterDown2);
+    applyShift("low");
     
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  
   }
 
   public void setSpeed(double speed, double turn){
-    //dDrive.set(ControlMode.PercentOutput, speed);
-    
-    //leftFalcon1.set(ControlMode.PercentOutput, speed);
-
-   // rightFalcon1.set(ControlMode.PercentOutput, speed);
-    //dDrive.arcadeDrive(speed, turn, true);
+    System.out.println("setting speed");
     dDrive.curvatureDrive(speed, turn, (Math.abs(speed)<0.1));
-  //  leftGroup.set(speed);
-  //  rightGroup.set(speed);
-  //  leftFalcon1.set(speed);
-  //  leftFalcon2.set(speed);
-  //  rightFalcon1.set(speed);
-  //  rightFalcon2.set(speed);
-   System.out.println("Falcon left 1 get(): " + leftFalcon1.get());
-   System.out.println("Falcon right 1 get(): " + rightFalcon1.get());
-   System.out.println("turn: " + turn);
   }
 
+  public void driveDistance(double distance){
+
+  }
+
+  public void toggleShift(){
+    if(isFast) applyShift("slow");
+    else if(!isFast) applyShift("fast");
+    isFast = !isFast;
+  }
+
+  public void applyShift(String gear){
+    if(gear.equals("fast")){
+      gearState = "fast";
+      shifter.set(fast);
+      shifter2.set(fast);
+      System.out.println("shifted to fast");
+    }else if(gear.equals("slow")){
+      gearState = "slow";
+      shifter.set(slow);
+      shifter2.set(slow);
+      System.out.println("shifted to slow");
+    } 
+  }
   
+  public void stopShift(){
+    shifter.set(off);
+    shifter2.set(off);
+  }
+
+  public DoubleSolenoid getShifter1(){
+    return shifter;
+
+  }
+  public DoubleSolenoid getShifter2(){
+    return shifter2;
+  }
 }
