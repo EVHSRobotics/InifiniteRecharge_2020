@@ -15,11 +15,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Turret extends SubsystemBase {
   private TalonSRX turret = new TalonSRX(Constants.TURRET);
   private TalonSRX elevator = new TalonSRX(Constants.ELEVATOR);
+  Vision vision;
+  double kp;
   /**
    * Creates a new Turret.
    */
   public Turret() {
-
+    vision = RobotContainer.vision;
+    kp = .01;
   }
 
   @Override
@@ -27,9 +30,10 @@ public class Turret extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  // public void turnTurret(double pos){
-  //   turret.set(ControlMode.Position, pos);
-  // }
+  public void turnTurret(double speed){
+    
+    turret.set(ControlMode.PercentOutput, speed);//*kp*vision.getX());
+  }
 
   // public void elevateBall(double rpm){
   //   while(RobotContainer.shooter.getShooterSpeed() < RobotContainer.shooter.getMaxSpeed()){

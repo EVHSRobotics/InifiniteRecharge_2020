@@ -13,11 +13,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Vision;
 
 public class JoystickDrive extends CommandBase {
   private double throttle;
   private double turn;
   private final DriveTrain jDrive;
+  Vision vision;
   /**
    * Creates a new JoystickDrive.
    */
@@ -25,6 +27,7 @@ public class JoystickDrive extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drive);
     jDrive = drive;
+    vision = RobotContainer.vision;
   }
 
   // Called when the command is initially scheduled.
@@ -48,7 +51,7 @@ public class JoystickDrive extends CommandBase {
 
   //   System.out.println("Battery Voltage: " + RobotController.getBatteryVoltage());
   //  // SmartDashboard.putNumber("Battery Voltage", RobotController.getBatteryVoltage());
-
+    System.out.println("x = " + vision.getX());
 
   }
 

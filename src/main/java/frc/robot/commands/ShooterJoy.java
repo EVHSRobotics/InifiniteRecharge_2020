@@ -11,11 +11,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Turret;
 
 public class ShooterJoy extends CommandBase {
   Shooter shooter;
+  Turret turret;
   double throttle;
   double inThrottle;
+  double turretThrottle;
   /**
    * Creates a new ShooterJoy.
    */
@@ -24,6 +27,7 @@ public class ShooterJoy extends CommandBase {
     addRequirements(shooter);
     this.shooter = shooter;
     System.out.println("shooter subsystem working");
+    turret = RobotContainer.turret;
   }
 
   // Called when the command is initially scheduled.
@@ -39,11 +43,13 @@ public class ShooterJoy extends CommandBase {
    
     throttle = SmartDashboard.getNumber("shooter speed: ", 0);
     inThrottle = RobotContainer.joy.getRawAxis(2);
+    turretThrottle = RobotContainer.joy.getRawAxis(3);
 
     System.out.println("throttle: " + throttle);
     shooter.outtakeBall(inThrottle);
     shooter.inttakeBall(inThrottle);
-    System.out.println("throttle");
+    turret.turnTurret(turretThrottle);
+   // System.out.println("throttle");
   }
 
   // Called once the command ends or is interrupted.

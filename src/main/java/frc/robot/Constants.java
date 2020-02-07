@@ -27,6 +27,6 @@ public final class Constants {
 	public static final int INTAKE = 8;
 
 	public static final int ELEVATOR = 0;
-	public static int TURRET;
+	public static int TURRET = 7;
 	public static int INTAKE_2;
 }

@@ -54,15 +54,5 @@ public class Shooter extends SubsystemBase {
       intakeMotor.set(ControlMode.PercentOutput, speed);
   }
 
-  // public void rotateTurret(double speed){
-  //   turretMotor.set(ControlMode.PercentOutput,speed);
-  // }
-
-  // public void intake1(double speed){
-  //   intakeMotor1.set(ControlMode.PercentOutput, speed);
-  // }
-
-  // public void intake2(double speed){
-  //   intakeMotor2.set(ControlMode.PercentOutput, speed);
-  // }
+ 
 }
