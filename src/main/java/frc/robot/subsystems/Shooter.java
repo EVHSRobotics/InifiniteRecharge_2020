@@ -9,7 +9,9 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -20,6 +22,7 @@ public class Shooter extends SubsystemBase {
   // private static TalonFX turretMotor = new TalonFX(Constants.TURRET);
   private static TalonFX shooterMotor1 = new TalonFX(Constants.SHOOTER1);
   private static TalonFX shooterMotor2 = new TalonFX(Constants.SHOOTER2);
+  private static VictorSPX intakeMotor = new VictorSPX(Constants.INTAKE);
 
   private double currentSpeed;
   private double maxSpeed;
@@ -37,9 +40,18 @@ public class Shooter extends SubsystemBase {
   }
 
   public void outtakeBall(double speed){
-   shooterMotor1.set(ControlMode.Velocity, speed*20000);
-    shooterMotor2.set(ControlMode.Velocity, speed*20000);
+   //shooterMotor1.set(ControlMode.Velocity, speed*20000);
+  //shooterMotor2.set(ControlMode.Velocity, speed*20000);
+    shooterMotor1.set(ControlMode.PercentOutput, speed);
+     shooterMotor2.set(ControlMode.PercentOutput, speed);
     System.out.println(speed);
+    
+    //SmartDashboard.getNumber("set speed: ", 0);
+
+  }
+
+  public void inttakeBall(double speed) {
+      intakeMotor.set(ControlMode.PercentOutput, speed);
   }
 
   // public void rotateTurret(double speed){

@@ -24,6 +24,7 @@ public final class Constants {
 
 	public static final int SHOOTER1 = 5;
 	public static final int SHOOTER2 = 6;
+	public static final int INTAKE = 8;
 
 	public static final int ELEVATOR = 0;
 	public static int TURRET;
