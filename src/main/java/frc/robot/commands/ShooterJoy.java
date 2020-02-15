@@ -20,6 +20,7 @@ public class ShooterJoy extends CommandBase {
   double inThrottle;
   double outThrottle;
   double turretThrottle;
+  double manualTurretThrottle;
   /**
    * Creates a new ShooterJoy.
    */
@@ -46,14 +47,15 @@ public class ShooterJoy extends CommandBase {
     inThrottle = RobotContainer.joy.getRawAxis(1);
     outThrottle = RobotContainer.joy.getRawAxis(2);
     turretThrottle = RobotContainer.joy.getRawAxis(3);
+    manualTurretThrottle = RobotContainer.joy.getRawAxis(4);
 
   
     shooter.outtakeBall(outThrottle);
     shooter.inttakeBall(inThrottle);
-    turret.turnTurret(turretThrottle);
+    turret.turnTurret(turretThrottle, manualTurretThrottle);
     System.out.println("Limit Switch status: " + turret.getLeftLimitSwitchStatus());
     System.out.println("Right Limit Switch status: " + turret.getRightLimitSwitchStatus());
- 
+    
   }
 
   // Called once the command ends or is interrupted.

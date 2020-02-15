@@ -51,12 +51,12 @@ public class Vision extends SubsystemBase {
 
   public double getX() {
 
+    x = tx.getDouble(0) + 2.4;
+    
     if(tv.getBoolean(false)){
       x = 0;
     }
-    x = tx.getDouble(0);
-    // System.out.println("x : " + x);
-    return x;
+    return x ;
     
   
   }
