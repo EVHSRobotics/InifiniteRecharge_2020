@@ -21,37 +21,31 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
- 
+
   private TalonFXSpeedController leftFalcon1;
   private TalonFXSpeedController leftFalcon2;
   private TalonFXSpeedController rightFalcon1;
   private TalonFXSpeedController rightFalcon2;
 
   private SpeedControllerGroup leftGroup;
-  
+
   private SpeedControllerGroup rightGroup;
 
-
-    //DifferentialDrive dDrive;
-
-  
+  DifferentialDrive dDrive;
 
   public DriveTrain() {
-    // leftFalcon1 = new TalonFXSpeedController(Constants.LEFT_MOTOR_1);
-    // leftFalcon2 = new TalonFXSpeedController(Constants.LEFT_MOTOR_2);
-    // rightFalcon1 = new TalonFXSpeedController(Constants.RIGHT_MOTOR_1);
-    // rightFalcon2 = new TalonFXSpeedController(Constants.RIGHT_MOTOR_2);
+    leftFalcon1 = new TalonFXSpeedController(Constants.LEFT_MOTOR_1, Constants.LEFT_MOTOR_2);
+   // leftFalcon2 = new TalonFXSpeedController(Constants.LEFT_MOTOR_2);
+    rightFalcon1 = new TalonFXSpeedController(Constants.RIGHT_MOTOR_1, Constants.RIGHT_MOTOR_2);
+   // rightFalcon2 = new TalonFXSpeedController(Constants.RIGHT_MOTOR_2);
 
-    // leftGroup = new SpeedControllerGroup(leftFalcon1, leftFalcon2);
-    // rightGroup = new SpeedControllerGroup(rightFalcon1, rightFalcon2);
-  //  leftFalcon2.follow(leftFalcon1);
-   // rightFalcon2.follow(rightFalcon1);
+    leftGroup = new SpeedControllerGroup(leftFalcon1, leftFalcon2);
+    rightGroup = new SpeedControllerGroup(rightFalcon1, rightFalcon2);
 
-   // rightFalcon1.setInverted(true);
-  //  rightFalcon2.setInverted(true);
+    // rightFalcon1.setInverted(false);
+    // rightFalcon2.setInverted(false);
+    dDrive = new DifferentialDrive(leftFalcon1, rightFalcon1);
 
-
-    
   }
 
   @Override
@@ -59,24 +53,14 @@ public class DriveTrain extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setSpeed(double speed, double turn){
-    //dDrive.set(ControlMode.PercentOutput, speed);
-    
-    //leftFalcon1.set(ControlMode.PercentOutput, speed);
-  //  // rightFalcon1.set(ControlMode.PercentOutput, speed);
-  //   // dDrive.arcadeDrive(speed, turn, true);
+  public void setSpeed(double speed, double turn) {
+    // dDrive.set(ControlMode.PercentOutput, speed);
 
-  //   dDrive.curvatureDrive(speed, turn, (Math.abs(speed)<0.1));
-  // //  leftGroup.set(speed);
-  // //  rightGroup.set(speed);
-  // //  leftFalcon1.set(speed);
-  // //  leftFalcon2.set(speed);
-  // //  rightFalcon1.set(speed);
-  // //  rightFalcon2.set(speed);
-  //  System.out.println("Falcon left 1 get(): " + leftFalcon1.get());
-  //  System.out.println("Falcon right 1 get(): " + rightFalcon1.get());
-  //  System.out.println("turn: " + turn);
+     dDrive.curvatureDrive(speed, turn, (Math.abs(speed)<0.1));
+
+    // System.out.println("Falcon left 1 get(): " + leftFalcon1.get());
+    // System.out.println("Falcon right 1 get(): " + rightFalcon1.get());
+    // System.out.println("turn: " + turn);
   }
 
-  
 }

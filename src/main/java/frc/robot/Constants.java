@@ -17,9 +17,9 @@ package frc.robot;
  */
 public final class Constants {
 
-	public static final int LEFT_MOTOR_1 = 0;
-	public static final int LEFT_MOTOR_2 = 1;
-	public static final int RIGHT_MOTOR_1 = 2;
+	public static final int LEFT_MOTOR_1 = 2;
+	public static final int LEFT_MOTOR_2 = 4;
+	public static final int RIGHT_MOTOR_1 = 1;
 	public static final int RIGHT_MOTOR_2 = 3;
 
 	public static final int SHOOTER1 = 5;
@@ -30,3 +30,6 @@ public final class Constants {
 	public static int TURRET = 7;
 	public static int INTAKE_2;
 }
+/*
+2 -> left 3 -> right
+*/

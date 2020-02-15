@@ -23,7 +23,7 @@ import frc.robot.subsystems.Vision;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private RobotContainer m_robotContainer;
+  private RobotContainer robotContainer;
 //  public static DriveTrain drive = new DriveTrain();
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
+    robotContainer = new RobotContainer();
   }
 
   /**
@@ -50,7 +50,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.shooter, RobotContainer.shooterJoy);
+    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.shooter, RobotContainer.shooterJoy);
     
   }
 
@@ -70,7 +70,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    m_autonomousCommand = robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -94,7 +94,9 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    //new JoystickDrive(RobotContainer.drive).schedule();
+    robotContainer.joyDrive.schedule();
+    robotContainer.shooterJoy.schedule();
+
     
   }
 

@@ -18,16 +18,17 @@ public class ShooterJoy extends CommandBase {
   Turret turret;
   double throttle;
   double inThrottle;
+  double outThrottle;
   double turretThrottle;
   /**
    * Creates a new ShooterJoy.
    */
-  public ShooterJoy(Shooter shooter) {
+  public ShooterJoy(Shooter shooter, Turret turret) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shooter);
     this.shooter = shooter;
     System.out.println("shooter subsystem working");
-    turret = RobotContainer.turret;
+    this.turret = turret;
   }
 
   // Called when the command is initially scheduled.
@@ -39,17 +40,20 @@ public class ShooterJoy extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //throttle = RobotContainer.joy.getRawAxis(3);
+    
    
     throttle = SmartDashboard.getNumber("shooter speed: ", 0);
-    inThrottle = RobotContainer.joy.getRawAxis(2);
+    inThrottle = RobotContainer.joy.getRawAxis(1);
+    outThrottle = RobotContainer.joy.getRawAxis(2);
     turretThrottle = RobotContainer.joy.getRawAxis(3);
 
-    System.out.println("throttle: " + throttle);
-    shooter.outtakeBall(inThrottle);
+  
+    shooter.outtakeBall(outThrottle);
     shooter.inttakeBall(inThrottle);
     turret.turnTurret(turretThrottle);
-   // System.out.println("throttle");
+    System.out.println("Limit Switch status: " + turret.getLeftLimitSwitchStatus());
+    System.out.println("Right Limit Switch status: " + turret.getRightLimitSwitchStatus());
+ 
   }
 
   // Called once the command ends or is interrupted.

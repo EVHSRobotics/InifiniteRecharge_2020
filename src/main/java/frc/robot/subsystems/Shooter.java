@@ -30,8 +30,8 @@ public class Shooter extends SubsystemBase {
   /**
    * Creates a new Shooter.
    */
-  public Shooter() { 
-      shooterMotor2.setInverted(true);
+  public Shooter() {
+    shooterMotor2.setInverted(true);
   }
 
   @Override
@@ -39,20 +39,19 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void outtakeBall(double speed){
-   //shooterMotor1.set(ControlMode.Velocity, speed*20000);
-  //shooterMotor2.set(ControlMode.Velocity, speed*20000);
+  public void outtakeBall(double speed) {
+    // shooterMotor1.set(ControlMode.Velocity, speed*20000);
+    // shooterMotor2.set(ControlMode.Velocity, speed*20000);
     shooterMotor1.set(ControlMode.PercentOutput, speed);
-     shooterMotor2.set(ControlMode.PercentOutput, speed);
-    System.out.println(speed);
+    shooterMotor2.set(ControlMode.PercentOutput, speed);
     
-    //SmartDashboard.getNumber("set speed: ", 0);
+
+    // SmartDashboard.getNumber("set speed: ", 0);
 
   }
 
   public void inttakeBall(double speed) {
-      intakeMotor.set(ControlMode.PercentOutput, speed);
+    intakeMotor.set(ControlMode.PercentOutput, speed);
   }
 
- 
 }

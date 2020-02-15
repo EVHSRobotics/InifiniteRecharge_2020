@@ -1,0 +1,104 @@
+[33mcommit c2741fe2adf8a322f15e336a82968fda2dceb26d[m[33m ([m[1;36mHEAD -> [m[1;32mShooterBranch[m[33m, [m[1;31morigin/ShooterBranch[m[33m)[m
+Author: Sumayya-Syeda <sumayya.syeda@gmail.com>
+Date:   Thu Feb 6 20:08:53 2020 -0800
+
+    vision added
+
+[33mcommit 012e76e9ad873b023eb3da844bee99be482d9b4f[m
+Author: wtbui <bui.william30@gmail.com>
+Date:   Thu Feb 6 17:45:28 2020 -0800
+
+    added intake
+
+[33mcommit caa9a78729809bf4421f9b1f2c56f28824302854[m
+Merge: cae7972 7c2ca86
+Author: icannotdothecode <52980679+icannotdothecode@users.noreply.github.com>
+Date:   Tue Jan 28 20:01:48 2020 -0800
+
+    shooter falcons tuned
+
+[33mcommit 7c2ca865ddf1f8686cb141629eb1f20bb80a6ef2[m
+Author: Sumayya-Syeda <sumayya.syeda@gmail.com>
+Date:   Tue Jan 28 19:01:13 2020 -0800
+
+    working on tuning falcons
+
+[33mcommit cae7972d7a9b67c1d3a71430db0c19467ebc41ed[m
+Author: icannotdothecode <52980679+icannotdothecode@users.noreply.github.com>
+Date:   Mon Jan 27 18:20:28 2020 -0800
+
+    changes
+
+[33mcommit 92e90f478a6713b2d58ce689243ecb581ea40504[m
+Author: icannotdothecode <52980679+icannotdothecode@users.noreply.github.com>
+Date:   Mon Jan 27 17:00:56 2020 -0800
+
+    added Shooter Code
+
+[33mcommit 3cbf82f2b30e2b9c71e68306a088dcff26f7ea76[m
+Author: Kshitij Teotia <teotia.kshitij@gmail.com>
+Date:   Sat Jan 25 14:01:50 2020 -0800
+
+    Added shooter code
+
+[33mcommit 85041d2d6ae421b36b823ccbb0ce00c9a8e0254a[m
+Author: Sumayya-Syeda <sumayya.syeda@gmail.com>
+Date:   Fri Jan 24 20:05:25 2020 -0800
+
+    diffretial drive working
+
+[33mcommit ab1bff35bcaf45f9eb900b80f7cb09993f732511[m
+Author: Sumayya-Syeda <sumayya.syeda@gmail.com>
+Date:   Wed Jan 22 20:29:46 2020 -0800
+
+    falcon code
+
+[33mcommit 3d2ed87c2fb79d3ddadb0b8304a7576175a54956[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Sumayya-Syeda <sumayya.syeda@gmail.com>
+Date:   Wed Jan 22 20:09:37 2020 -0800
+
+    programmign bot
+
+[33mcommit 54852a7c9acf78ab857f9bec317505f2e56495d7[m[33m ([m[1;32mmaster[m[33m)[m
+Merge: 26cf9b7 8121b56
+Author: Sumayya-Syeda <sumayya.syeda@gmail.com>
+Date:   Tue Jan 14 18:20:46 2020 -0800
+
+    Merge branch 'master' of https://github.com/EVHSRobotics/InifiniteRecharge_2020
+
+[33mcommit 26cf9b7f3ee5837b89eee794403648fb4284349f[m
+Author: Sumayya-Syeda <sumayya.syeda@gmail.com>
+Date:   Tue Jan 14 18:18:55 2020 -0800
+
+    first commit
+
+[33mcommit 8121b5669c740711a1a75b883931b86e3d859419[m
+Author: Sumayya-Syeda <33674382+Sumayya-Syeda@users.noreply.github.com>
+Date:   Tue Jan 14 18:18:00 2020 -0800
+
+    Create README.md
+
+[33mcommit 110d410469b1fc7f52a47daa0cda95fe477d019b[m
+Author: Sumayya-Syeda <sumayya.syeda@gmail.com>
+Date:   Tue Jan 14 18:17:04 2020 -0800
+
+    delete everyting
+
+[33mcommit 443dea6ef77208ef7b20380cd156bb2a93e7c912[m
+Merge: 5c7a1b6 337eb37
+Author: Sumayya-Syeda <sumayya.syeda@gmail.com>
+Date:   Tue Jan 14 18:06:58 2020 -0800
+
+    Merge branch 'master' of https://github.com/EVHSRobotics/InifiniteRecharge_2020
+
+[33mcommit 5c7a1b623ea33f342a71b3544b609e5cdbb1e5d8[m
+Author: Sumayya-Syeda <sumayya.syeda@gmail.com>
+Date:   Tue Jan 14 17:58:10 2020 -0800
+
+    firstttt
+
+[33mcommit 337eb37c21d049b3e4be48cdeda76934e998970a[m
+Author: Sumayya-Syeda <33674382+Sumayya-Syeda@users.noreply.github.com>
+Date:   Mon Jan 13 00:04:34 2020 -0800
+
+    Initial commit

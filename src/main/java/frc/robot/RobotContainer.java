@@ -33,18 +33,23 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  
+ 
+
+  public static Vision vision = new Vision();
+  public static Turret turret = new Turret(vision);
   public static DriveTrain drive = new DriveTrain();
   public static JoystickDrive joyDrive = new JoystickDrive(drive);
 
   public static Shooter shooter = new Shooter();
-  public static ShooterJoy shooterJoy = new ShooterJoy(shooter);
+  public static ShooterJoy shooterJoy = new ShooterJoy(shooter, turret);
 
-  public static Vision vision = new Vision();
+  
 
-  public static Turret turret = new Turret();
+
 
   public static Joystick joy = new Joystick(0);
+  public static Joystick throttleJoy = new Joystick(1);
+  public static Joystick wheel = new Joystick(2);
 
 
 

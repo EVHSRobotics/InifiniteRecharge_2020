@@ -17,14 +17,26 @@ import edu.wpi.first.wpilibj.SpeedController;
  */
 public class TalonFXSpeedController implements SpeedController {
     private TalonFX talonFX;
+    private TalonFX talonFX2;
     private double speed;
     private boolean isInverted;
     public TalonFXSpeedController(int channel){
         talonFX = new TalonFX(channel);
+       
+        
         speed = 0;
         isInverted = false;
 
     }
+    public TalonFXSpeedController(int channel, int channel2){
+        talonFX = new TalonFX(channel);
+        talonFX2 = new TalonFX(channel2);
+        speed = 0;
+        isInverted = false;
+        talonFX2.follow(talonFX);
+
+    }
+    
 
     @Override
     public void pidWrite(double output) {
@@ -42,7 +54,7 @@ public class TalonFXSpeedController implements SpeedController {
         }
         this.speed = speed;
 
-        talonFX.set(ControlMode.PercentOutput, speed);
+        talonFX.set(ControlMode.Velocity, speed*500);
 
     }
 

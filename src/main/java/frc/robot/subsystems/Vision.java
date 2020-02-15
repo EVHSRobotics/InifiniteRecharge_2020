@@ -46,14 +46,18 @@ public class Vision extends SubsystemBase {
     y = ty.getDouble(0.0);
     area = ta.getDouble(0.0);
 
-    System.out.println("x : " + x);
+    
   }
 
   public double getX() {
+
     if(tv.getBoolean(false)){
-      return 0;
+      x = 0;
     }
-    return tx.getDouble(0.0);
+    x = tx.getDouble(0);
+    // System.out.println("x : " + x);
+    return x;
+    
   
   }
 }

@@ -38,16 +38,15 @@ public class JoystickDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  //   throttle = RobotContainer.joy.getRawAxis(2)-RobotContainer.joy.getRawAxis(3);
-  //   turn = RobotContainer.joy.getRawAxis(4);
-  //   turn *= Math.abs(turn)*turn*turn;
-  //   if(Math.abs(turn) < .005){
-  //     turn = 0;
+    throttle = RobotContainer.throttleJoy.getRawAxis(1);//RobotContainer.joy.getRawAxis(2)-RobotContainer.joy.getRawAxis(3);
+    turn = RobotContainer.wheel.getRawAxis(0);
+    turn *= Math.abs(turn)*turn*turn;
+    if(Math.abs(turn) < .005){
+      turn = 0;
 
-  //   }
+    }
     
-  //   System.out.println(throttle);
-  //     //jDrive.setSpeed(throttle, -1*turn);
+       jDrive.setSpeed(throttle, -1*turn);
 
   //   System.out.println("Battery Voltage: " + RobotController.getBatteryVoltage());
   //  // SmartDashboard.putNumber("Battery Voltage", RobotController.getBatteryVoltage());
@@ -58,7 +57,7 @@ public class JoystickDrive extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-   // jDrive.setSpeed(0, 0);
+    jDrive.setSpeed(0, 0);
   }
 
   // Returns true when the command should end.
