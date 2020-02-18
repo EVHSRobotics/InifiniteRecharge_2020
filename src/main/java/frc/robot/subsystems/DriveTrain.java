@@ -7,14 +7,19 @@
 
 package frc.robot.subsystems;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PWMTalonFX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
@@ -26,7 +31,7 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
- 
+
   private TalonFXSpeedController leftFalcon1;
   private TalonFXSpeedController leftFalcon2;
   private TalonFXSpeedController rightFalcon1;
@@ -102,6 +107,21 @@ public class DriveTrain extends SubsystemBase {
       shifter2.set(slow);
       System.out.println("shifted to slow");
     } 
+  }
+
+  public void turn180(){
+    TimerTask t = new TimerTask(){
+    
+      @Override
+      public void run() {
+        leftGroup.set(0);
+        rightGroup.set(0);
+      }
+    };
+    Timer time = new Timer();
+    leftGroup.set(-1);
+    rightGroup.set(1);
+    time.schedule(t, 300);
   }
   
   public void stopShift(){

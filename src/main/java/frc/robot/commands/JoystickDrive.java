@@ -54,6 +54,10 @@ public class JoystickDrive extends CommandBase {
     System.out.println(throttle);
     jDrive.setSpeed(throttle, -1 * turn);
 
+    if(Robot.robotContainer.getJoy().getTriggerPressed())
+      jDrive.turn180();
+
+      
     System.out.println("Battery Voltage: " + RobotController.getBatteryVoltage());
    
   }
