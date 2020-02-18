@@ -16,7 +16,7 @@ public class Vision extends SubsystemBase {
   /**
    * Creates a new Vision.
    */
-
+  
   NetworkTable table;
   NetworkTableEntry tx;
   NetworkTableEntry ty;
