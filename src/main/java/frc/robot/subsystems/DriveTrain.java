@@ -38,20 +38,18 @@ public class DriveTrain extends SubsystemBase {
   private TalonFXSpeedController rightFalcon2;
 
   private SpeedControllerGroup leftGroup;
-  
+
   private SpeedControllerGroup rightGroup;
 
   private DoubleSolenoid shifter;
   private DoubleSolenoid shifter2;
   Value fast = Value.kForward;
   Value slow = Value.kReverse;
-  Value off  = Value.kOff;
+  Value off = Value.kOff;
   private String gearState;
   private boolean isFast = false;
   private JoystickButton buttonA;
   DifferentialDrive dDrive;
-
-  
 
   public DriveTrain() {
     leftFalcon1 = new TalonFXSpeedController(Constants.LEFT_MOTOR_1);
@@ -61,67 +59,66 @@ public class DriveTrain extends SubsystemBase {
 
     leftGroup = new SpeedControllerGroup(leftFalcon1, leftFalcon2);
     rightGroup = new SpeedControllerGroup(rightFalcon1, rightFalcon2);
-  //  leftFalcon2.follow(leftFalcon1);
-   // rightFalcon2.follow(rightFalcon1);
+    // leftFalcon2.follow(leftFalcon1);
+    // rightFalcon2.follow(rightFalcon1);
 
-   // rightFalcon1.setInverted(true);
-  //  rightFalcon2.setInverted(true);
+    // rightFalcon1.setInverted(true);
+    // rightFalcon2.setInverted(true);
 
-    dDrive = new DifferentialDrive(leftGroup , rightGroup);
+    dDrive = new DifferentialDrive(leftGroup, rightGroup);
     shifter = new DoubleSolenoid(Constants.shifterUp1, Constants.shifterDown1);
     shifter2 = new DoubleSolenoid(Constants.shifterUp2, Constants.shifterDown2);
     applyShift("low");
-    
+
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-  
+
   }
 
-  public void setSpeed(double speed, double turn){
+  public void setSpeed(double speed, double turn) {
     System.out.println("setting speed");
-    dDrive.curvatureDrive(speed, turn, (Math.abs(speed)<0.1));
+    dDrive.curvatureDrive(speed, turn, (Math.abs(speed) < 0.1));
   }
 
-  public void driveDistance(double distance){
+  public void driveDistance(double distance) {
 
   }
 
-  public void toggleShift(){
-    if(isFast) applyShift("slow");
-    else if(!isFast) applyShift("fast");
+  public void toggleShift() {
+    if (isFast)
+      applyShift("slow");
+    else if (!isFast)
+      applyShift("fast");
     isFast = !isFast;
   }
 
-  public void applyShift(String gear){
-    if(gear.equals("fast")){
+  public void applyShift(String gear) {
+    if (gear.equals("fast")) {
       gearState = "fast";
       shifter.set(fast);
       shifter2.set(fast);
       System.out.println("shifted to fast");
-    }else if(gear.equals("slow")){
+    } else if (gear.equals("slow")) {
       gearState = "slow";
       shifter.set(slow);
       shifter2.set(slow);
       System.out.println("shifted to slow");
-    } 
+    }
   }
 
-  public void turn180(){
-    Timer time = new Timer();
-    leftFalcon1.set(1);
-    leftFalcon2.set(1);
-    rightFalcon1.set(1);
-    rightFalcon2.set(1);
-    time.schedule(new TimerTask(){
+  public void turn180() {
     
-      @Override
-      public void run() {
-        setSpeed(0, 0);
-      }
-    }, 10000);
+    try {
+      Thread.sleep(4000);
+    } catch (InterruptedException e) {
+      // TODO Auto-generated catch block
+      System.out.println("ERRor::::::");
+      e.printStackTrace();
+    }
+    setSpeed(0, 0);
   }
   
   public void stopShift(){
