@@ -110,18 +110,18 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void turn180(){
-    TimerTask t = new TimerTask(){
+    Timer time = new Timer();
+    leftFalcon1.set(1);
+    leftFalcon2.set(1);
+    rightFalcon1.set(1);
+    rightFalcon2.set(1);
+    time.schedule(new TimerTask(){
     
       @Override
       public void run() {
-        leftGroup.set(0);
-        rightGroup.set(0);
+        setSpeed(0, 0);
       }
-    };
-    Timer time = new Timer();
-    leftGroup.set(-1);
-    rightGroup.set(1);
-    time.schedule(t, 300);
+    }, 10000);
   }
   
   public void stopShift(){
