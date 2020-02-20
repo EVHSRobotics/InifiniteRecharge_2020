@@ -46,10 +46,10 @@ public class JoystickDrive extends CommandBase {
   public void execute() {
     // throttle = Robot.robotContainer.getJoy().getRawAxis(1);// -
     // Robot.robotContainer.getJoy().getRawAxis(2);
-    throttle = SmartDashboard.getNumber("set speed", 0);
+    throttle = Robot.robotContainer.getJoy().getRawAxis(1); 
     turn = Robot.robotContainer.getWheel().getRawAxis(0);
     // turn *= Math.abs(turn) * turn ;
-    // if(jDrive.getShifter1().get().)
+    //if(jDrive.getShifter1().get().)
     if (Math.abs(turn) < .0001) {
       turn = 0;
 

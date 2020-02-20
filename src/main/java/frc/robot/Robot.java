@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.drive, RobotContainer.joyDrive);
-
+    
   }
 
   /**
@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    new GyroTurn(robotContainer.drive).schedule();
+    new JoystickDrive(robotContainer.drive).schedule();
   }
 
   /**

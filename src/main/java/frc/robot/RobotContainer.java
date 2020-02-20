@@ -34,6 +34,8 @@ public class RobotContainer {
   
   public final static DriveTrain drive = new DriveTrain();
   
+  
+
   private final GyroTurn gTurn = new GyroTurn(drive);
 
   private final JoystickDrive joyDrive = new JoystickDrive(drive);
@@ -41,7 +43,9 @@ public class RobotContainer {
   private Joystick joy;
   private Joystick wheel;
 
-  private JoystickButton shiftBtn;
+
+
+  private static JoystickButton shiftBtn;
 
   
 

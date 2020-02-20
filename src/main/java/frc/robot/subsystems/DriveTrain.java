@@ -92,6 +92,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void toggleShift() {
+    System.out.println("REACHED");
     if (isFast)
       applyShift("slow");
     else if (!isFast)
