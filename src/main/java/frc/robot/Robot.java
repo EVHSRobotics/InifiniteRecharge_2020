@@ -99,6 +99,7 @@ public class Robot extends TimedRobot {
     }
 
     new JoystickDrive(robotContainer.drive).schedule();
+    robotContainer.drive.resetEncoders();
   }
 
   /**

@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.ToggleShift;
@@ -39,6 +40,8 @@ public class RobotContainer {
   private Joystick wheel;
 
   private JoystickButton shiftBtn;
+  private JoystickButton buttonA;
+  private JoystickButton button3;
 
   
 
@@ -64,9 +67,11 @@ public class RobotContainer {
     wheel = new Joystick(Constants.WHEEL_PORT);
   
     shiftBtn = new JoystickButton(joy, 1);
+    button3 = new JoystickButton(joy, 3);
 
     shiftBtn.whenPressed(() -> drive.toggleShift());
-    //buttonA.whenPressed(new ToggleShift(drive));
+   // buttonA.whenPressed(() -> drive.driveDistance(2));
+    button3.whenPressed(new DriveDistance(0, 0));
 
 
 

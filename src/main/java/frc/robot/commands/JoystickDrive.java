@@ -42,7 +42,7 @@ public class JoystickDrive extends CommandBase {
   @Override
   public void execute() {
     //throttle = Robot.robotContainer.getJoy().getRawAxis(1);// - Robot.robotContainer.getJoy().getRawAxis(2);
-    throttle = SmartDashboard.getNumber("set speed", 0);
+    throttle = Robot.robotContainer.getJoy().getRawAxis(1);
     turn = Robot.robotContainer.getWheel().getRawAxis(0);
     //turn *= Math.abs(turn) * turn ;
     //if(jDrive.getShifter1().get().)
@@ -50,18 +50,16 @@ public class JoystickDrive extends CommandBase {
       turn = 0;
 
     }
+    jDrive.drive(throttle, -1 * turn);
 
-    System.out.println(throttle);
-    jDrive.setSpeed(throttle, -1 * turn);
-
-    System.out.println("Battery Voltage: " + RobotController.getBatteryVoltage());
+   // System.out.println("Battery Voltage: " + RobotController.getBatteryVoltage());
    
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    jDrive.setSpeed(0, 0);
+    jDrive.drive(0, 0);
   }
 
   // Returns true when the command should end.

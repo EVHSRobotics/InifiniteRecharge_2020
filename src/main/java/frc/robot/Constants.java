@@ -28,4 +28,12 @@ public final class Constants {
 	
 	public static final int JOY_PORT = 0;
 	public static final int WHEEL_PORT = 1;
+
+	public static final double WHEEL_DIAMETER = 6;
+	public static final double CIRCUMFERENCE = Math.PI * WHEEL_DIAMETER;
+	public static final double TICKS_PER_INCH = 360 / CIRCUMFERENCE;
 }
+
+/*
+1 ft --> -29276, -31923, -32453, -32864
+*/

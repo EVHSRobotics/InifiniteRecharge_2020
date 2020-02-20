@@ -33,8 +33,7 @@ public class JoystickDrive extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    System.out.println("joystick command working");
+  public void initialize() {}
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -49,8 +48,8 @@ public class JoystickDrive extends CommandBase {
     // SmartDashboard.putNumber("Proximity", jDrive.proximity());
 
     
-    throttle = RobotContainer.joy.getRawAxis(5);
-    turn = RobotContainer.joy.getRawAxis(2) - RobotContainer.joy.getRawAxis(3);//   System.out.println("throttle: " + throttle);
+  //throttle = RobotContainer.joy.getRawAxis(5);
+   // turn = RobotContainer.joy.getRawAxis(2) - RobotContainer..getRawAxis(3);//   System.out.println("throttle: " + throttle);
  // jDrive.setSpeedPercent(throttle+turn, throttle - turn);
     jDrive.setSpeed(throttle, turn);
    // System.out.println("Left Encoder = " + jDrive.getLeftEncoders());
