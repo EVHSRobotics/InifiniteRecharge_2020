@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.GyroTurn;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.ToggleShift;
 import frc.robot.subsystems.DriveTrain;
@@ -34,6 +35,10 @@ public class RobotContainer {
   
   public final static DriveTrain drive = new DriveTrain();
   
+  
+
+  private final GyroTurn gTurn = new GyroTurn(drive);
+
   private final JoystickDrive joyDrive = new JoystickDrive(drive);
 
   private Joystick joy;

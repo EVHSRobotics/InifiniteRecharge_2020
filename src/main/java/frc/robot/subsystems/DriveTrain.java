@@ -7,13 +7,19 @@
 
 package frc.robot.subsystems;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PWMTalonFX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -23,11 +29,12 @@ import frc.robot.RobotContainer;
 import frc.robot.TalonFXSpeedController;
 import frc.robot.commands.ToggleShift;
 
+
 public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
-
+  public static AHRS navX;
   private TalonFXSpeedController leftFalcon1;
   private TalonFXSpeedController leftFalcon2;
   private TalonFXSpeedController rightFalcon1;
@@ -56,6 +63,7 @@ public class DriveTrain extends SubsystemBase {
   private double ticksPerInch = 360 / circumference;
 
   public DriveTrain() {
+    navX = new AHRS(Port.kUSB1);
     leftFalcon1 = new TalonFXSpeedController(Constants.LEFT_MOTOR_1);
     leftFalcon2 = new TalonFXSpeedController(Constants.LEFT_MOTOR_2);
     rightFalcon1 = new TalonFXSpeedController(Constants.RIGHT_MOTOR_1);
@@ -152,5 +160,12 @@ public class DriveTrain extends SubsystemBase {
   public int getAverageEncoders(){
     return (leftFalcon1.getEncoderTicks() - rightFalcon1.getEncoderTicks())/2;
 
+  } 
+  public double returnAngle(){
+    return navX.getAngle();
+  }
+
+  public void reset(){
+    navX.reset();
   }
 }
