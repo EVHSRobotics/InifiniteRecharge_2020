@@ -10,16 +10,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.DriveDistance;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.GyroTurn;
-import frc.robot.commands.JoystickDrive;
-import frc.robot.commands.ToggleShift;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -35,9 +31,8 @@ public class RobotContainer {
   
   public final static DriveTrain drive = new DriveTrain();
   
-  
+  public static final Autonomous auto = new Autonomous();
 
-  private final GyroTurn gTurn = new GyroTurn(drive);
 
   private final JoystickDrive joyDrive = new JoystickDrive(drive);
 
@@ -47,6 +42,7 @@ public class RobotContainer {
   private JoystickButton shiftBtn;
   private JoystickButton buttonA;
   private JoystickButton button3;
+  private JoystickButton autoBtn;
 
   
 
@@ -73,9 +69,12 @@ public class RobotContainer {
   
     shiftBtn = new JoystickButton(joy, 1);
     button3 = new JoystickButton(joy, 3);
+    autoBtn = new JoystickButton(joy, 4);
 
     shiftBtn.whenPressed(() -> drive.toggleShift());
-   // buttonA.whenPressed(() -> drive.driveDistance(2));
+    autoBtn.whenPressed(new Autonomous());
+   // buttonA.whenPressed(() -> drive.driveDistance(2));h
+
     button3.whenPressed(new DriveDistance(0, 0));
 
 
@@ -97,7 +96,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return auto;
   }
 
  

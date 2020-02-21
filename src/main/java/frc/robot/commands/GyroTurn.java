@@ -9,23 +9,25 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
 
 public class GyroTurn extends CommandBase {
   static int lastError = 0;
+  double target = 90;
   /**
    * Creates a new GyroTurn.
    */
-  private final DriveTrain jDrive;
-  public GyroTurn(DriveTrain d) {
-    addRequirements(d);
-    jDrive = d;
+  private DriveTrain jDrive;
+  public GyroTurn(double angle) {
+    this.target = angle;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
+// Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    jDrive = Robot.robotContainer.drive;
     jDrive.reset();
   }
 
@@ -34,7 +36,6 @@ public class GyroTurn extends CommandBase {
   public void execute() {
       double kP = 0.038;
       double kI = 0.000001;
-      double target = 90;
       double error = target - jDrive.returnAngle();
       double pTerm = error*kP;
       double iTerm = lastError*kI;
@@ -55,6 +56,8 @@ public class GyroTurn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(Math.abs(target - jDrive.returnAngle()) <= .5)
+      return true;
     return false;
   }
 }
