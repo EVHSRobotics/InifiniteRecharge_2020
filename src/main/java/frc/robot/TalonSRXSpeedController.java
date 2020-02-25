@@ -8,35 +8,32 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedController;
 
 /**
  * Add your docs here.
  */
-public class TalonFXSpeedController implements SpeedController {
-    private TalonFX talonFX;
-    private TalonFX talonFX2;
+public class TalonSRXSpeedController implements SpeedController {
+    private TalonSRX talonSRX, talonSRX2;
     private double speed;
     private boolean isInverted;
-    public TalonFXSpeedController(int channel){
-        talonFX = new TalonFX(channel);
-       
+    public TalonSRXSpeedController(int channel){
+        talonSRX = new TalonSRX(channel);
+        speed = 0;
+        isInverted = false;
         
-        speed = 0;
-        isInverted = false;
 
     }
-    public TalonFXSpeedController(int channel, int channel2){
-        talonFX = new TalonFX(channel);
-        talonFX2 = new TalonFX(channel2);
+    public TalonSRXSpeedController(int channel, int channel2){
+        talonSRX = new TalonSRX(channel);
+        talonSRX2 = new TalonSRX(channel2);
         speed = 0;
         isInverted = false;
-        talonFX2.follow(talonFX);
+        talonSRX2.follow(talonSRX);
 
     }
-    
 
     @Override
     public void pidWrite(double output) {
@@ -54,7 +51,7 @@ public class TalonFXSpeedController implements SpeedController {
         }
         this.speed = speed;
 
-        talonFX.set(ControlMode.Velocity, speed*500);
+        talonSRX.set(ControlMode.Velocity, speed*2200);
 
     }
 
@@ -68,7 +65,7 @@ public class TalonFXSpeedController implements SpeedController {
     public void setInverted(boolean isInverted) {
         // TODO Auto-generated method stub
         this.isInverted = isInverted;
-        talonFX.setInverted(isInverted);
+        talonSRX.setInverted(isInverted);
 
     }
 
@@ -78,6 +75,14 @@ public class TalonFXSpeedController implements SpeedController {
         return this.isInverted;
     }
 
+
+    public int getEncoderTicks(){
+        return talonSRX.getSelectedSensorPosition();
+    }
+
+    public void resetEncoder(){
+        talonSRX.setSelectedSensorPosition(0);
+    }
     @Override
     public void disable() {
         // TODO Auto-generated method stub
@@ -90,13 +95,5 @@ public class TalonFXSpeedController implements SpeedController {
         // TODO Auto-generated method stub
         set(0);
 
-    }
-
-    public void resetEncoders(){
-        talonFX.setSelectedSensorPosition(0);
-    }
-
-    public int getEncoders(){
-        return talonFX.getSelectedSensorPosition();
     }
 }
