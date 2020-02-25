@@ -40,7 +40,7 @@ public class TurnAngle extends CommandBase {
     double error = target - jDrive.returnAngle();
     double pTerm = error * kP;
     double iTerm = lastError * kI;
-    SmartDashboard.putNumber("ERROr", error);
+    SmartDashboard.putNumber("Angle turn ERROr", error);
     jDrive.setSpeed(0, -pTerm + iTerm);
     // System.out.println("ANGLE: " + jDrive.returnAngle());
     // while(true){

@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.Autonomous;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.JoystickDrive;
@@ -45,13 +46,13 @@ public class RobotContainer {
   public static Shooter shooter = new Shooter();
   public static ShooterJoy shooterJoy = new ShooterJoy(shooter, turret);
 
-  
-
 
 
   public static Joystick joy = new Joystick(0);
   public static Joystick throttleJoy = new Joystick(1);
   public static Joystick wheel = new Joystick(2);
+
+  public static Autonomous auto = new Autonomous();
 
 
   private JoystickButton buttonA;
@@ -88,7 +89,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return auto;
   }
 
   public Subsystem getSubsystem(Subsystem subsystemName){

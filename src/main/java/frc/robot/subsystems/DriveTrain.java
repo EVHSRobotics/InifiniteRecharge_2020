@@ -93,7 +93,9 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public int getAvgEncoders() {
+    System.out.println("Falcon left 1 get(): " + leftTalon1.getEncoderTicks() + "RIGHT: " + rightTalon1.getEncoderTicks());
     return (leftTalon1.getEncoderTicks()+rightTalon1.getEncoderTicks())/2;
+
    
   }
 
