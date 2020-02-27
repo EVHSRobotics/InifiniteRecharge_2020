@@ -23,6 +23,7 @@ import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Vision;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Camera;
 
 /**
@@ -49,9 +50,12 @@ public class RobotContainer {
 
   public static Joystick joy = new Joystick(0);
 
-  //public static ColorSensor colorsense = new ColorSensor();
+  public static ColorSensor colorsense = new ColorSensor();
 
-  //+++public static Camera camera = new Camera();
+  public static Camera camera = new Camera();
+  
+
+  private JoystickButton clrButton;
 
 
   /**
@@ -71,6 +75,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    clrButton = new JoystickButton(joy, 1);
+
+    clrButton.whileHeld(() -> ColorSensor.run());
   }
 
 
