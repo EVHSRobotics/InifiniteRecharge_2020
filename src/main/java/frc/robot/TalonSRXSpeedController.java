@@ -81,7 +81,10 @@ public class TalonSRXSpeedController implements SpeedController {
     }
 
     public void resetEncoder(){
-        talonSRX.setSelectedSensorPosition(0);
+        System.out.println(talonSRX.setSelectedSensorPosition(0));
+        System.out.println(talonSRX.getSelectedSensorPosition());
+
+        
     }
     @Override
     public void disable() {

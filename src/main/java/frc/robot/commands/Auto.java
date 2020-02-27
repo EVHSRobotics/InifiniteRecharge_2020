@@ -12,13 +12,16 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class Autonomous extends SequentialCommandGroup {
+public class Auto extends SequentialCommandGroup {
   /**
-   * Creates a new Autonomous.
+   * Creates a new Auto.
    */
-  public Autonomous() {
+  public Auto() {
     // Add your commands in the super() call, e.g.
-    // super(new FooFightersCommand(), new BarCommand());
-    super(new DriveDistance());
+    // super(new FooCommand(), new BarCommand());
+    super();
+    addCommands(
+      //new DriveDistance(5000),
+      new TurnAngle(180));
   }
 }

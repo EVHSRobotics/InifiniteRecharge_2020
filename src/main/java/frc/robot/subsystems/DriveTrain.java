@@ -52,7 +52,7 @@ public class DriveTrain extends SubsystemBase {
     // // rightFalcon1.setInverted(false);
     // // rightFalcon2.setInverted(false);
     // dDrive = new DifferentialDrive(leftFalcon1, rightFalcon1);
-
+    System.out.println("initialized drive train");
     leftTalon1 = new TalonSRXSpeedController(Constants.LEFT_MOTOR_1, Constants.LEFT_MOTOR_2);
   //  leftTalon2 = new TalonSRXSpeedController(Constants.LEFT_MOTOR_2);
     
@@ -78,13 +78,9 @@ public class DriveTrain extends SubsystemBase {
     // dDrive.set(ControlMode.PercentOutput, speed);
 
     dDrive.curvatureDrive(speed, turn, (Math.abs(speed) < 0.1));
+    // System.out.println("left talon encoder: " + leftTalon1.getEncoderTicks());
+    // System.out.println("right talon encoder: " + rightTalon1.getEncoderTicks());
 
-  //  SmartDashboard.putNumber("AVerage encoders:", getAvgEncoders());
-
-
-    // System.out.println("Falcon left 1 get(): " + leftFalcon1.get());
-    // System.out.println("Falcon right 1 get(): " + rightFalcon1.get());
-    // System.out.println("turn: " + turn);
   }
 
   public void resetEncoders() {
@@ -93,8 +89,8 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public int getAvgEncoders() {
-    System.out.println("Falcon left 1 get(): " + leftTalon1.getEncoderTicks() + "RIGHT: " + rightTalon1.getEncoderTicks());
-    return (leftTalon1.getEncoderTicks()+rightTalon1.getEncoderTicks())/2;
+    System.out.println("Falcon left 1 get(): " + leftTalon1.getEncoderTicks() + " RIGHT: " + rightTalon1.getEncoderTicks());
+    return (leftTalon1.getEncoderTicks()-rightTalon1.getEncoderTicks())/2;
 
    
   }
@@ -103,7 +99,7 @@ public class DriveTrain extends SubsystemBase {
     return navX.getAngle();
   }
 
-  public void reset() {
+  public void resetAngle() {
     navX.reset();
   }
 }

@@ -50,7 +50,7 @@ public class JoystickDrive extends CommandBase {
 
   //   System.out.println("Battery Voltage: " + RobotController.getBatteryVoltage());
   //  // SmartDashboard.putNumber("Battery Voltage", RobotController.getBatteryVoltage());
-    System.out.println("x = " + vision.getX());
+    //System.out.println("x = " + vision.getX());
 
   }
 

@@ -10,12 +10,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.Autonomous;
+import frc.robot.commands.Auto;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.ShooterDrie;
 import frc.robot.commands.ShooterJoy;
+import frc.robot.commands.TurnAngle;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
@@ -52,7 +53,7 @@ public class RobotContainer {
   public static Joystick throttleJoy = new Joystick(1);
   public static Joystick wheel = new Joystick(2);
 
-  public static Autonomous auto = new Autonomous();
+  public static Auto auto = new Auto();
 
 
   private JoystickButton buttonA;
@@ -76,9 +77,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    buttonA = new JoystickButton(joy,1);
+    buttonA = new JoystickButton(throttleJoy,1);
 
-    buttonA.whenPressed(new DriveDistance());
+ //  buttonA.whenPressed(new TurnAngle(90));
   }
 
 

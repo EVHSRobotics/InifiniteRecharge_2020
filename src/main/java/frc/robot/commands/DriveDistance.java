@@ -17,24 +17,25 @@ public class DriveDistance extends CommandBase {
   DriveTrain drive;
   double initencoder;
   int count;
-  int target = 100;
+  int target;
   static int lastError = 0;
 
   
   /**
    * Creates a new DriveDistance.
    */
-  public DriveDistance(DriveTrain jdrive) {
+  public DriveDistance(int distance) {
     // Use addRequirements() here to declare subsystem dependencies.
-    drive = jdrive;
+    drive = RobotContainer.drive;
     addRequirements(drive);
+    target = distance;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
-   // drive.resetEncoders();
+    System.out.println("Initialize drive distance");
+    // drive.resetEncoders();
     initencoder = drive.getAvgEncoders();
     count = 0;
   }
@@ -46,17 +47,16 @@ public class DriveDistance extends CommandBase {
     double kP = 0.0;
     double kF = 0.0;
     double kI = 0.0;
-    double error = target - drive.getAvgEncoders();
+    double error = target - drive.getAvgEncoders() + initencoder;
     double pTerm = error * kP;
     double iTerm = lastError * kI;
 
-    drive.setSpeed(.5, 0); 
+    drive.setSpeed(.3, 0); 
   
     count++;
+  //  System.out.println("Average encoderS: " + drive.getAvgEncoders());
     SmartDashboard.putNumber("Initial value of encoders:", initencoder);
-    SmartDashboard.putNumber("encoders", drive.getAvgEncoders());
-
-  //  System.out.println("AVerage encoders:" + drive.getAvgEncoders());
+    SmartDashboard.putNumber("encoder value ", drive.getAvgEncoders());
 
   }
 
@@ -72,7 +72,7 @@ public class DriveDistance extends CommandBase {
   @Override
   public boolean isFinished() {
   
-    return (Math.abs(drive.getAvgEncoders()) - initencoder > target);
+    return (Math.abs(drive.getAvgEncoders()) > target);
 
   }
 }

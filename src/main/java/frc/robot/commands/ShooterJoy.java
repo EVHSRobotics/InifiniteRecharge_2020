@@ -53,8 +53,8 @@ public class ShooterJoy extends CommandBase {
     shooter.outtakeBall(outThrottle);
     shooter.inttakeBall(inThrottle);
     turret.turnTurret(turretThrottle, manualTurretThrottle);
-    System.out.println("Limit Switch status: " + turret.getLeftLimitSwitchStatus());
-    System.out.println("Right Limit Switch status: " + turret.getRightLimitSwitchStatus());
+    // System.out.println("Limit Switch status: " + turret.getLeftLimitSwitchStatus());
+    // System.out.println("Right Limit Switch status: " + turret.getRightLimitSwitchStatus());
     
   }
 
