@@ -27,7 +27,7 @@ public class JoystickDrive extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drive);
     jDrive = drive;
-    vision = RobotContainer.vision;
+    //vision = RobotContainer.vision;
   }
 
   // Called when the command is initially scheduled.

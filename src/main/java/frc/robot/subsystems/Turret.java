@@ -21,7 +21,7 @@ public class Turret extends SubsystemBase {
    * Creates a new Turret.
    */
   public Turret() {
-    vision = RobotContainer.vision;
+    //vision = RobotContainer.vision;
     kp = .01;
   }
 

@@ -26,7 +26,7 @@ public final class Constants {
 	public static final int SHOOTER2 = 6;
 	public static final int INTAKE = 8;
 
-	//public static final int COLOR_WHEEL_SPINNER = null; //change this once spinner is installed
+	public static final int COLOR_WHEEL_SPINNER = 7; //change this once spinner is installed
 
 	public static final int ELEVATOR = 0;
 	public static int TURRET;

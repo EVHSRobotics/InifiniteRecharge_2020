@@ -27,7 +27,7 @@ public class ShooterJoy extends CommandBase {
     addRequirements(shooter);
     this.shooter = shooter;
     System.out.println("shooter subsystem working");
-    turret = RobotContainer.turret;
+    //turret = RobotContainer.turret;
   }
 
   // Called when the command is initially scheduled.

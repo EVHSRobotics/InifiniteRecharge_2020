@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -38,25 +40,25 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
-  public static DriveTrain drive = new DriveTrain();
-  public static JoystickDrive joyDrive = new JoystickDrive(drive);
+  //public static DriveTrain drive = new DriveTrain();
+  //public static JoystickDrive joyDrive = new JoystickDrive(drive);
 
-  public static Shooter shooter = new Shooter();
-  public static ShooterJoy shooterJoy = new ShooterJoy(shooter);
+  //public static Shooter shooter = new Shooter();
+  //public static ShooterJoy shooterJoy = new ShooterJoy(shooter);
 
-  public static Vision vision = new Vision();
+  //public static Vision vision = new Vision();
 
-  public static Turret turret = new Turret();
+  //public static Turret turret = new Turret();
 
   public static Joystick joy = new Joystick(0);
 
   public static ColorSensor colorsense = new ColorSensor();
 
-  public static Camera camera = new Camera();
+  //public static Camera camera = new Camera();
   
 
   private JoystickButton clrButton;
-
+  private JoystickButton colorDetectButton;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -75,9 +77,16 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    clrButton = new JoystickButton(joy, 1);
+    clrButton = new JoystickButton(joy, 3);
+    colorDetectButton = new JoystickButton(joy, 5);
 
     clrButton.whileHeld(() -> ColorSensor.run());
+    clrButton.whenReleased(() -> ColorSensor.endme());
+    colorDetectButton.whileHeld(() -> ColorSensor.turntoColor("red"));
+    colorDetectButton.whenReleased(() -> ColorSensor.endme());
+    
+
+
   }
 
 
