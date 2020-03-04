@@ -82,8 +82,8 @@ public class RobotContainer {
 
     clrButton.whileHeld(() -> ColorSensor.run());
     clrButton.whenReleased(() -> ColorSensor.endme());
-    colorDetectButton.whileHeld(() -> ColorSensor.turntoColor("red"));
-    colorDetectButton.whenReleased(() -> ColorSensor.endme());
+    colorDetectButton.whenPressed(() -> ColorSensor.turntoColor("red"));
+    // colorDetectButton.whenReleased(() -> ColorSensor.endme());
     
 
 

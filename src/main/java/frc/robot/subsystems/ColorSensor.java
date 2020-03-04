@@ -141,29 +141,33 @@ public class ColorSensor extends SubsystemBase {
   }
 
   public static void turntoColor(String col) {
+    boolean stop = false;
     
-    Color a = m_colorSensor.getColor();
-    ColorMatchResult l = m_colorMatcher.matchClosestColor(a);
+    while (stop == false) {
+      Color a = m_colorSensor.getColor();
+      ColorMatchResult l = m_colorMatcher.matchClosestColor(a);
+      if(l.color == kRedTarget){
+        colorFound = "blue";
+      }else if(l.color == kBlueTarget){
+        colorFound = "red";
+      }else if(l.color == kYellowTarget){
+        colorFound = "green";
+      }else if(l.color == kGreenTarget){
+        colorFound = "yellow";
+      }
 
-    if(l.color == kRedTarget){
-      colorFound = "red";
-    }else if(l.color == kBlueTarget){
-      colorFound = "blue";
-    }else if(l.color == kYellowTarget){
-      colorFound = "yellow";
-    }else if(l.color == kRedTarget){
-      colorFound = "red";
-    }else{
-      colorFound = "";
-    }
-    SmartDashboard.putString("Detected: ", colorFound);
-    SmartDashboard.putString("COLR: ", col);
-    if(col.equals(colorFound)){
-      wheelspinner.set(ControlMode.PercentOutput, 0);
-      SmartDashboard.putString("OK: ", "REACHED");
-    }else{
-      wheelspinner.set(ControlMode.PercentOutput, .75);
-      SmartDashboard.putString("OK: ", "NOT REACHED");
+      SmartDashboard.putString("Detected: ", colorFound);
+      SmartDashboard.putString("COLR: ", col);
+
+      if(col.equals(colorFound)) {
+        wheelspinner.set(ControlMode.PercentOutput, 0);
+        SmartDashboard.putString("OK: ", "REACHED");
+        colorFound = "";
+        stop = true;
+      } else {
+        wheelspinner.set(ControlMode.PercentOutput, .75);
+        SmartDashboard.putString("OK: ", "NOT REACHED");
+      }
     }
 
   }
