@@ -56,7 +56,6 @@ public class RobotContainer {
 
   public static ColorSensor colorsense = new ColorSensor();
 
-  public static String gameData = DriverStation.getInstance().getGameSpecificMessage();;
 
   //public static Camera camera = new Camera();
   
