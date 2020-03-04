@@ -85,7 +85,7 @@ public class ColorSensor extends SubsystemBase {
     }
 
     if(spinwheel == true){
-    wheelspinner.set(ControlMode.PercentOutput, 0.75);
+    wheelspinner.set(ControlMode.PercentOutput, 0.6);
     }else{
     wheelspinner.set(ControlMode.PercentOutput, 0); 
     }
