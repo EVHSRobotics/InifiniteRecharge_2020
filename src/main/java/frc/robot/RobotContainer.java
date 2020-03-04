@@ -9,6 +9,7 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -27,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Camera;
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -53,6 +55,8 @@ public class RobotContainer {
   public static Joystick joy = new Joystick(0);
 
   public static ColorSensor colorsense = new ColorSensor();
+
+  public static String gameData = DriverStation.getInstance().getGameSpecificMessage();;
 
   //public static Camera camera = new Camera();
   

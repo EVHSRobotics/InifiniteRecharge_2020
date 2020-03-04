@@ -8,6 +8,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 
 import edu.wpi.first.wpilibj.util.Color;
@@ -141,6 +142,31 @@ public class ColorSensor extends SubsystemBase {
   }
 
   public static void turntoColor(String col) {
+  String gameData;
+  gameData = DriverStation.getInstance().getGameSpecificMessage();
+    if(gameData.length() > 0){
+      switch (gameData.charAt(0)){
+        case 'B' :
+          col = "blue";
+          break;
+        case 'G' :
+          col = "green";
+          break;
+        case 'R' :
+          col = "red";
+          break;
+        case 'Y' :
+          col = "yellow";
+          break;
+        default :
+          return;
+      }
+    } else {
+      return;
+    }
+
+
+
     boolean stop = false;
     
     while (stop == false) {
