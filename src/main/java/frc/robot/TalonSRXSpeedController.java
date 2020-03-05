@@ -77,7 +77,13 @@ public class TalonSRXSpeedController implements SpeedController {
 
 
     public int getEncoderTicks(){
+        
         return talonSRX.getSelectedSensorPosition();
+        
+    }
+
+    public double getEncoderVel(){
+        return talonSRX.getSelectedSensorVelocity()*10;
     }
 
     public void resetEncoder(){

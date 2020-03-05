@@ -21,6 +21,9 @@ public class ShooterJoy extends CommandBase {
   double outThrottle;
   double turretThrottle;
   double manualTurretThrottle;
+  double count;
+  boolean ballLoaded;
+
   /**
    * Creates a new ShooterJoy.
    */
@@ -30,6 +33,7 @@ public class ShooterJoy extends CommandBase {
     this.shooter = shooter;
     System.out.println("shooter subsystem working");
     this.turret = turret;
+    count = 0;
   }
 
   // Called when the command is initially scheduled.
@@ -41,21 +45,30 @@ public class ShooterJoy extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-   
+
     throttle = SmartDashboard.getNumber("shooter speed: ", 0);
     inThrottle = RobotContainer.joy.getRawAxis(1);
-    outThrottle = RobotContainer.joy.getRawAxis(2);
-    turretThrottle = RobotContainer.joy.getRawAxis(3);
+    turretThrottle = RobotContainer.joy.getRawAxis(2);
     manualTurretThrottle = RobotContainer.joy.getRawAxis(4);
 
-  
-    shooter.outtakeBall(outThrottle);
-    shooter.inttakeBall(inThrottle);
+    // shooter.outtakeBall(outThrottle);
+    // shooter.inttakeBall(inThrottle);
     turret.turnTurret(turretThrottle, manualTurretThrottle);
-    // System.out.println("Limit Switch status: " + turret.getLeftLimitSwitchStatus());
-    // System.out.println("Right Limit Switch status: " + turret.getRightLimitSwitchStatus());
     
+    
+    shooter.intake(RobotContainer.buttonB.get());      
+    if (RobotContainer.joy.getRawAxis(3) > 0) {
+      shooter.outtakeBall(1);
+      System.out.println("shooter vel " + shooter.getShooterVel());
+      if (shooter.getShooterVel() >= 9500) {
+        System.out.println("reached shooter velocity");
+        // shooter.intake();
+        shooter.inttakeBall(1);
+      }
+    } else {
+      shooter.outtakeBall(0);
+    }
+
   }
 
   // Called once the command ends or is interrupted.

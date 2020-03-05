@@ -78,8 +78,11 @@ public class DriveTrain extends SubsystemBase {
     // dDrive.set(ControlMode.PercentOutput, speed);
 
     dDrive.curvatureDrive(speed, turn, (Math.abs(speed) < 0.1));
-    // System.out.println("left talon encoder: " + leftTalon1.getEncoderTicks());
-    // System.out.println("right talon encoder: " + rightTalon1.getEncoderTicks());
+   
+  }
+  public void driveArcade(double speed, double turn) {
+
+    dDrive.arcadeDrive(speed, turn, (Math.abs(speed) < 0.1));
 
   }
 
@@ -89,11 +92,16 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public int getAvgEncoders() {
-    System.out.println("Falcon left 1 get(): " + leftTalon1.getEncoderTicks() + " RIGHT: " + rightTalon1.getEncoderTicks());
+   // System.out.println("Falcon left 1 get(): " + leftTalon1.getEncoderTicks() + " RIGHT: " + rightTalon1.getEncoderTicks());
     return (leftTalon1.getEncoderTicks()-rightTalon1.getEncoderTicks())/2;
 
    
   }
+  public double getAvgSpeed() {
+     return (leftTalon1.getEncoderVel()-rightTalon1.getEncoderVel())/2;
+ 
+    
+   }
 
   public double returnAngle() {
     return navX.getAngle();

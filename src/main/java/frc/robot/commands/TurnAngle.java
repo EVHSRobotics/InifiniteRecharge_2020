@@ -20,8 +20,8 @@ public class TurnAngle extends CommandBase {
   double error, maxError;
   double pTerm;
   double iTerm, dTerm;
-  int targetCount;
-  double lastError;
+  int targetCount, diffTargetCount;
+  double lastError, errorDiff;
   /**
    * Creates a new GyroTurn.
    */
@@ -39,26 +39,29 @@ public class TurnAngle extends CommandBase {
     jDrive = RobotContainer.drive;
     jDrive.resetAngle();
     targetCount = 0;
+    diffTargetCount = 0;
     error = target - jDrive.returnAngle();
 
     lastError = error;
     errorInt = 0;
-    maxError = 1000;
+    maxError = 10000;
+    kP = .008;
+    kI = 0;// 0.0001;
+    kD = 0.015;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    kP = .008;
-    kI = 0;// 0.0001;
-    kD = 0.015;
     error = target - jDrive.returnAngle();
-    pTerm = error * kP;
-    iTerm = errorInt * kI;
-    dTerm = (error - lastError)*kD;
- //   SmartDashboard.putNumber("Angle turn ERROr", error);
-    jDrive.setSpeed(0, pTerm + iTerm + dTerm);
     errorInt += error;
+    errorDiff = error - lastError;
+    pTerm = error * kP;
+    iTerm = errorInt * kI; 
+    dTerm = errorDiff*kD;
+    
+    jDrive.setSpeed(0, pTerm + iTerm + dTerm);
+   
 
     if(errorInt > maxError){
       errorInt = maxError;
@@ -67,7 +70,7 @@ public class TurnAngle extends CommandBase {
     }
 
     if(Math.abs(error) > .1 && error * errorInt < 0){
-      error = 0;
+      errorInt = 0;
     }
     SmartDashboard.putNumber("Current angle", jDrive.returnAngle());
     System.out.println("Current angle " + jDrive.returnAngle());
@@ -84,17 +87,23 @@ public class TurnAngle extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(target - jDrive.returnAngle()) <= .5 ){
+    if ((Math.abs(target - jDrive.returnAngle()) <= 5)){
       targetCount++;
     }else{
       targetCount = 0;
     }
 
-    if(targetCount>5){
+    if(Math.abs(errorDiff) <= .01){
+      diffTargetCount++;
+    }else{
+      diffTargetCount = 0;
+    }
+    if(targetCount>5 || diffTargetCount > 10){
       System.out.println("Turn angle finished");
       return true;
     }
     return false;
-     
+
+    
   }
 }

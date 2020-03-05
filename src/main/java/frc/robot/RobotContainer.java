@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Auto;
 import frc.robot.commands.DriveDistance;
+import frc.robot.commands.EjectBalls;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.commands.ShooterDrie;
@@ -27,17 +28,17 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
- * This class is where the bulk of the robot should be declared.  Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls).  Instead, the structure of the robot
- * (including subsystems, commands, and button mappings) should be declared here.
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a "declarative" paradigm, very little robot logic should
+ * actually be handled in the {@link Robot} periodic methods (other than the
+ * scheduler calls). Instead, the structure of the robot (including subsystems,
+ * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
- 
 
   public static Vision vision = new Vision();
   public static Turret turret = new Turret(vision);
@@ -47,41 +48,40 @@ public class RobotContainer {
   public static Shooter shooter = new Shooter();
   public static ShooterJoy shooterJoy = new ShooterJoy(shooter, turret);
 
-
-
   public static Joystick joy = new Joystick(0);
   public static Joystick throttleJoy = new Joystick(1);
   public static Joystick wheel = new Joystick(2);
 
   public static Auto auto = new Auto();
 
-
   private JoystickButton buttonA;
-
-
+  public static JoystickButton buttonB = new JoystickButton(joy, 2);
+  private JoystickButton trigger;
 
   /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
+   * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    
-    
+
   }
 
   /**
-   * Use this method to define your button->command mappings.  Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * Use this method to define your button->command mappings. Buttons can be
+   * created by instantiating a {@link GenericHID} or one of its subclasses
+   * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
+   * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    buttonA = new JoystickButton(throttleJoy,1);
+    buttonA = new JoystickButton(joy, 1);
+    //buttonB = new JoystickButton(joy, 2);
+    trigger = new JoystickButton(joy, 3);
 
- //  buttonA.whenPressed(new TurnAngle(90));
+    // buttonA.whenPressed(new TurnAngle(90));
+    //buttonB.whenPressed(new EjectBalls());
+   
   }
-
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -93,9 +93,9 @@ public class RobotContainer {
     return auto;
   }
 
-  public Subsystem getSubsystem(Subsystem subsystemName){
+  public Subsystem getSubsystem(Subsystem subsystemName) {
     return subsystemName;
 
   }
- 
+
 }

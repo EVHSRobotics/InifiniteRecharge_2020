@@ -8,30 +8,33 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Shooter;
 
-public class SetLaunch extends CommandBase { 
+public class EjectBalls extends CommandBase {
   Shooter shooter;
-  double rpm;
+  int count = 0;
   /**
-   * Creates a new SetLaunch.
+   * Creates a new EjectBalls.
    */
-  public SetLaunch(Shooter shooter, double rpm) {
+  public EjectBalls() {
     // Use addRequirements() here to declare subsystem dependencies.
+    shooter = RobotContainer.shooter;
     addRequirements(shooter);
-    this.shooter = shooter;
-    this.rpm = rpm;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    count++;
+    shooter.ejectBalls(-.5);
+
   }
 
   // Called once the command ends or is interrupted.
@@ -42,6 +45,10 @@ public class SetLaunch extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(count >= 3){
+      shooter.ejectBalls(0);
+      return true;
+    }
     return false;
   }
 }

@@ -21,7 +21,15 @@ public class Auto extends SequentialCommandGroup {
     // super(new FooCommand(), new BarCommand());
     super();
     addCommands(
-      //new DriveDistance(5000),
-      new TurnAngle(180));
+      new DriveDistance(3000));
+      // new TurnAngle(90),
+      // new DriveDistance(3000),
+      // new TurnAngle(90),
+      // new DriveDistance(3000),
+      // new TurnAngle(90),
+      // new DriveDistance(3000),
+      // new TurnAngle(90));
+
+
   }
 }
